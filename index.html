@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17040d">
+<title>For Soumia ❤️</title>
 
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  height:100vh;height:100dvh;overflow:hidden;color:white;
+  font-family:Georgia,"Times New Roman",serif;background:#10030b;
+}
+.page{
+  height:100%;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 50% 45%,#681735 0%,#350b20 40%,#16040e 75%,#070207 100%);
+}
+.page:before{
+  content:"";position:absolute;inset:15px;
+  border:1px solid #ffe2aa55;pointer-events:none;
+}
+.page:after{
+  content:"";position:absolute;width:280px;height:280px;border-radius:50%;
+  background:#ff174f18;filter:blur(70px);pointer-events:none;
+}
+.stars{position:absolute;inset:0;pointer-events:none}
+.star{
+  position:absolute;color:#ffe8bb;
+  animation:twinkle 2s infinite alternate;text-shadow:0 0 12px #ffe2aa;
+}
+.content{
+  z-index:2;position:relative;width:min(90%,470px);
+  display:flex;align-items:center;flex-direction:column;text-align:center;
+}
+.topline{
+  font-family:Arial,sans-serif;font-size:11px;letter-spacing:4px;
+  color:#f4c8d5;margin-bottom:23px;
+}
+.rose{
+  font-size:62px;line-height:1.2;
+  filter:drop-shadow(0 0 20px #ff315b);
+  animation:float 4s ease-in-out infinite;
+}
+h1{
+  font-size:clamp(38px,11vw,64px);font-weight:normal;
+  margin-top:17px;color:#fff2f5;letter-spacing:2px;
+  text-shadow:0 0 25px #ff315b70;
+}
+.line{
+  width:100px;height:1px;margin:20px 0;
+  background:linear-gradient(90deg,transparent,#ffe2aa,transparent);
+}
+.subtitle{
+  color:#f0c9d5;font-family:Arial,sans-serif;
+  font-size:14px;line-height:2;letter-spacing:1px;
+}
+.button-wrap{position:relative;margin-top:40px}
+.ring{
+  position:absolute;inset:-13px;border:1px solid #ff789c65;
+  border-radius:100px;animation:ring 2.5s infinite;
+}
+#startButton{
+  position:relative;border:1px solid #ffe2aa;border-radius:100px;
+  padding:18px 28px;min-width:245px;
+  background:linear-gradient(135deg,#8c1643,#4a0b29);
+  color:#fff5f7;font-family:Arial,sans-serif;font-size:16px;
+  box-shadow:0 0 35px #ff174f30,inset 0 0 18px #ff789c15;
+  cursor:pointer;transition:.3s;
+}
+#startButton:hover{transform:scale(1.04);box-shadow:0 0 45px #ff174f70}
+.bottom{
+  margin-top:40px;color:#d5a7b8;font-family:Arial,sans-serif;
+  font-size:11px;letter-spacing:3px;
+}
+.bottom span{color:#ff789c}
+.petal{
+  position:absolute;top:-30px;z-index:1;pointer-events:none;
+  animation:fall linear forwards;opacity:.8;
+}
+.corner{position:absolute;color:#ff789c70;font-size:24px}
+.c1{top:32px;left:32px}.c2{top:32px;right:32px}
+.c3{bottom:32px;left:32px}.c4{bottom:32px;right:32px}
+#status{font:12px Arial,sans-serif;color:#ffe2aa;margin-top:15px;min-height:15px}
+@keyframes twinkle{from{opacity:.25;transform:scale(.75)}to{opacity:1;transform:scale(1.2)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes ring{0%{transform:scale(.94);opacity:.8}100%{transform:scale(1.16);opacity:0}}
+@keyframes fall{to{transform:translateY(110vh) rotate(600deg);opacity:0}}
+@media(max-height:650px){
+  .rose{font-size:45px}h1{margin-top:8px}
+  .line{margin:12px 0}.button-wrap{margin-top:25px}
+  .bottom{margin-top:25px}
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+  <div class="stars" id="stars"></div>
+  <span class="corner c1">✦</span>
+  <span class="corner c2">✧</span>
+  <span class="corner c3">✧</span>
+  <span class="corner c4">✦</span>
+
+  <div class="content">
+    <div class="topline">A SPECIAL MOMENT · JUST FOR YOU</div>
+    <div class="rose">🌹</div>
+    <h1>Soumia</h1>
+    <div class="line"></div>
+
+    <div class="subtitle">
+      إلى أجمل إنسانة في قلبي<br>
+      <span style="color:#ffe2aa">كل شيء يبدأ بضغطة واحدة ❤️</span>
+    </div>
+
+    <div class="button-wrap">
+      <div class="ring"></div>
+      <button id="startButton">♫ &nbsp; تشغيل الموسيقى &nbsp; ♡</button>
+    </div>
+
+    <div id="status"></div>
+    <div class="bottom">MADE WITH <span>♥</span> FOR SOUMIA</div>
+  </div>
+</main>
+
+<!-- اسم الموسيقى كما أرسلته بالضبط -->
+<audio id="music" loop preload="auto">
+  <source src="./AUD-20261014-WA0001.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const stars=document.getElementById("stars");
+const music=document.getElementById("music");
+const button=document.getElementById("startButton");
+const status=document.getElementById("status");
+
+for(let i=0;i<65;i++){
+  const s=document.createElement("span");
+  s.className="star";
+  s.textContent=Math.random()>.5?"✦":"·";
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  s.style.fontSize=(Math.random()*12+5)+"px";
+  s.style.animationDelay=Math.random()*3+"s";
+  stars.appendChild(s);
+}
+
+function makePetal(){
+  const p=document.createElement("span");
+  p.className="petal";
+  p.textContent=["🌹","🌸","♥","✧"][Math.floor(Math.random()*4)];
+  p.style.left=Math.random()*100+"%";
+  p.style.fontSize=(Math.random()*12+12)+"px";
+  p.style.animationDuration=(Math.random()*6+7)+"s";
+  document.querySelector(".page").appendChild(p);
+  setTimeout(()=>p.remove(),14000);
+}
+setInterval(makePetal,900);
+
+button.addEventListener("click",async()=>{
+  if(music.paused){
+    try{
+      await music.play();
+      button.innerHTML="Ⅱ &nbsp; إيقاف الموسيقى &nbsp; ♡";
+      status.textContent="الموسيقى تعزف من أجلكِ يا سمية ❤️";
+    }catch(error){
+      status.textContent="تعذّر التشغيل. تأكّد من رفع ملف الموسيقى بجانب index.html.";
+    }
+  }else{
+    music.pause();
+    button.innerHTML="♫ &nbsp; تشغيل الموسيقى &nbsp; ♡";
+    status.textContent="";
+  }
+});
+
+music.addEventListener("error",()=>{
+  status.textContent="لم يتم العثور على ملف الموسيقى. تحقّق من الاسم ومكان الملف.";
+});
+</script>
+</body>
+  </html>
